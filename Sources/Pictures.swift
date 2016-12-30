@@ -28,7 +28,10 @@ open class Pictures<T: UICollectionViewCell>: UICollectionViewController where T
     {
         super.viewDidLoad()
         
-        installsStandardGestureForInteractiveMovement = false
+        if #available(iOS 9.0, *)
+        {
+            installsStandardGestureForInteractiveMovement = false
+        }
         
         if collectionViewLayout is UICollectionViewFlowLayout
         {
