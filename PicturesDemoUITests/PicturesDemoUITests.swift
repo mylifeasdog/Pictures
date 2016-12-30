@@ -3,7 +3,7 @@
 //  PicturesDemoUITests
 //
 //  Created by Wipoo Shinsirikul on 30/12/16.
-//  Copyright © 2016 ShopSpot. All rights reserved.
+//  Copyright © 2016 WipooShinsirikul. All rights reserved.
 //
 
 import XCTest
