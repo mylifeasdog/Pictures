@@ -1,0 +1,172 @@
+disabled_rules:
+  - function_parameter_count
+  - line_length
+  - nesting
+  - opening_brace
+  - trailing_whitespace
+  - weak_delegate
+opt_in_rules:
+  - attributes
+  - closure_spacing
+  - empty_count
+  - explicit_init
+  - first_where
+  - force_unwrapping
+  - nimble_operator
+  - number_separator
+  - operator_usage_whitespace
+  - overridden_super_call
+  - private_outlet
+  - redundant_string_enum_value
+excluded:
+  - Carthage
+  - Pods
+attributes:
+  severity: error
+closing_brace: error
+closure_parameter_position: error
+closure_spacing: error
+colon:
+  severity: error
+comma: error
+control_statement: error
+cyclomatic_complexity:
+  warning: 20
+  error: 40
+empty_count: error
+empty_parameters: error
+empty_parentheses_with_trailing_closure: error
+explicit_init: error
+file_length:
+  warning: 800
+  error: 1600
+first_where: error
+function_body_length:
+  warning: 160
+  error: 320
+implicit_getter: error
+leading_whitespace: error
+legacy_cggeometry_functions: error
+legacy_constant: error
+legacy_constructor: error
+mark: error
+nimble_operator: error
+number_separator: error
+operator_whitespace: error
+operator_usage_whitespace: error
+redundant_string_enum_value: error
+return_arrow_whitespace: error
+statement_position:
+  statement_mode: uncuddled_else
+syntactic_sugar: error
+trailing_comma: 
+  severity: error
+trailing_newline: error
+trailing_semicolon: error
+type_body_length:
+  warning: 350
+  error: 500
+type_name:
+  max_length:
+    warning: 60
+unused_closure_parameter: error
+unused_enumerated: error
+variable_name:
+  max_length:
+    warning: 55
+    error: 70
+  excluded:
+    - id
+    - url
+vertical_whitespace: error
+void_return: error
+custom_rules:
+  else_if_spacing:
+    name: "Else if spacing"
+    regex: "(?:\n|[^\w#])else\s{2,}if"
+    message: "Between else and if should have only one space"
+    severity: error
+  if_else-if_newline_opening_brace:
+    name: "Newline opening brace"
+    regex: "(?:\n|[^\w#])(?:if|else if)\s+[^\{]+\S[^\S\n\r]*\{[^\}]+(?:\n|\r)[^\S\n\r]*\}"
+    message: "Opening brace must put into new line"
+    severity: error
+  else_newline_opening_brace:
+    name: "Newline opening brace"
+    regex: "(?:\n|[^\w#])else[^\w\S\n\r]*\{[^\}]+\n[^\S\n\r]*\}"
+    message: "Opening brace must put into new line"
+    severity: error
+  guard_newline_opening_brace:
+    name: "Newline opening brace"
+    regex: "(?:\n|[^\w])guard\s+.*(,\s.*)*\s+else[^\S\n\r]*\{"
+    message: "Opening brace must put into new line"
+    severity: error
+  switch_newline_opening_brace:
+    name: "Newline opening brace"
+    regex: "(?:\n|[^\w])switch\s+[^\{]+\S[^\S\n\r]*\{[^\}]+(?:\n|\r)[^\S\n\r]*\}"
+    message: "Opening brace must put into new line"
+    severity: error
+  for_newline_opening_brace:
+    name: "Newline opening brace"
+    regex: "(?:\n|[^\w])for\s+[^\{]+\S[^\S\n\r]*\{[^\}]+(?:\n|\r)[^\S\n\r]*\}"
+    message: "Opening brace must put into new line"
+    severity: error
+  while_newline_opening_brace:
+    name: "Newline opening brace"
+    regex: "(?:\n|[^\w])while\s+[^\{]+\S[^\S\n\r]*\{[^\}]+(?:\n|\r)[^\S\n\r]*\}"
+    message: "Opening brace must put into new line"
+    severity: error
+  repeat-while_newline_opening_brace:
+    name: "Newline opening brace"
+    regex: "(?:\n|[^\w])repeat[^\w\S\n\r]*\{[^\}]+\n[^\S\n\r]*\}"
+    message: "Opening brace must put into new line"
+    severity: error
+  enum_newline_opening_brace:
+    name: "Newline opening brace"
+    regex: "(?:\n|[^\w])enum\s+[^\{]+\S[^\S\n\r]*\{[^\}]+(?:\n|\r)[^\S\n\r]*\}"
+    message: "Opening brace must put into new line"
+    severity: error
+  extension_newline_opening_brace:
+    name: "Newline opening brace"
+    regex: "(?:\n|[^\w])extension\s+[^\{]+\S[^\S\n\r]*\{[^\}]+(?:\n|\r)[^\S\n\r]*\}"
+    message: "Opening brace must put into new line"
+    severity: error
+  func_newline_opening_brace:
+    name: "Newline opening brace"
+    regex: "(?:\n|[^\w])func\s+[^\{]+\S[^\S\n\r]*\{[^\}]+(?:\n|\r)[^\S\n\r]*\}"
+    message: "Opening brace must put into new line"
+    severity: error
+  class_struct_newline_opening_brace:
+    name: "Newline opening brace"
+    regex: "(?:\n|[^\w])(?:class|struct)\s+[^\{]+\S[^\S\n\r]*\{[^\}]+(?:\n|\r)[^\S\n\r]*\}"
+    message: "Opening brace must put into new line"
+    severity: error
+  init_newline_opening_brace:
+    name: "Newline opening brace"
+    regex: "(?:\n|[^\w])init\s+[^\{]+\S[^\S\n\r]*\{[^\}]+(?:\n|\r)[^\S\n\r]*\}"
+    message: "Opening brace must put into new line"
+    severity: error
+  deinit_newline_opening_brace:
+    name: "Newline opening brace"
+    regex: "(?:\n|[^\w])deinit\s+[^\{]+\S[^\S\n\r]*\{[^\}]+(?:\n|\r)[^\S\n\r]*\}"
+    message: "Opening brace must put into new line"
+    severity: error
+  do_try_catch_newline_opening_brace:
+    name: "Newline opening brace"
+    regex: "(?:\n|[^\w])do\s+[^\{]+\S[^\S\n\r]*\{[^\}]+(?:\n|\r)[^\S\n\r]*\}"
+    message: "Opening brace must put into new line"
+    severity: error
+  empty_condition_statement:
+    name: "Empty condition statement"
+    message: "Condition statement should not empty (put '// ;' in empty statement instead)"
+    regex: "[^\w\.#](?:if |else if |else)[^,{]*\{\s*\}"
+    severity: warning
+  mark_newline:
+    name: "Mark surrounding empty newlines"
+    regex: "(?:[^\r\n\t\f \{](?:\n|\r)[^\S\n\r]*\/\/ MARK: -?|\/\/ MARK: -?[^\n\r]*(?:\n|\r)[^\S\n\r]*\w)"
+    message: "Mark must surronding by empty newlines"
+    severity: error
+    match_kinds:
+      - comment
+      - comment.mark
+      - comment.url
