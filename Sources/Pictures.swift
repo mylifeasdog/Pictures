@@ -52,13 +52,25 @@ open class Pictures<T: UICollectionViewCell>: UICollectionViewController where T
         collectionView?.allowsMultipleSelection = true
         collectionView?.backgroundColor = .white
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(Pictures.refreshControlValueDidChange(refreshControl:)), for: .valueChanged)
+        collectionView?.addSubview(refreshControl)
+        
         reloadData()
+    }
+    
+    // MARK: - Action
+    
+    @objc
+    private func refreshControlValueDidChange(refreshControl: UIRefreshControl)
+    {
+        reloadData { refreshControl.endRefreshing() }
     }
 }
 
 extension Pictures
 {
-    func reloadData()
+    func reloadData(_ completion: (() -> Void)? = nil)
     {
         guard let picturesDataProviderDelegate = picturesDataProviderDelegate else
         {
@@ -67,18 +79,14 @@ extension Pictures
         
         picturesCollectionViewDataSource.isLoading = true
         picturesCollectionViewDataSource.isLoadAll = false
-        picturesCollectionViewDataSource.pictures.removeAll()
         
         picturesDataProviderDelegate.picturesNeedsNewPictures { [weak self] (newPictures, isLoadAll) in
-            self?.collectionView?
-                .performBatchUpdates(
-                    { [weak self] in
-                        let insertedIndex = (0..<newPictures.count).map { IndexPath(item: $0, section: 0) }
-                        self?.picturesCollectionViewDataSource.pictures += newPictures
-                        self?.collectionView?.insertItems(at: insertedIndex)
-                        self?.picturesCollectionViewDataSource.isLoadAll = isLoadAll },
-                    completion: { _ in
-                        self?.picturesCollectionViewDataSource.isLoading = false }) }
+            self?.picturesCollectionViewDataSource.pictures.removeAll()
+            self?.picturesCollectionViewDataSource.pictures += newPictures
+            self?.picturesCollectionViewDataSource.isLoadAll = isLoadAll
+            self?.picturesCollectionViewDataSource.isLoading = false
+            self?.collectionView?.reloadData()
+            completion?() }
     }
 }
 
