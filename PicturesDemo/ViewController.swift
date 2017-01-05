@@ -36,6 +36,11 @@ extension ViewController: PicturesDataProviderDelegate
                 callback((newPictures: (1...30).map { self.imageURL(from: $0 * self.page) }, isLoadAll: self.page > 3))
         }
     }
+    
+    func picturesDidSelectPictures(selectedPictures: [URL])
+    {
+        print("selectedPictures: \(selectedPictures)")
+    }
 }
 
 extension ViewController

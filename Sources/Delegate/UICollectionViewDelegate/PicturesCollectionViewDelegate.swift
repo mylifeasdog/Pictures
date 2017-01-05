@@ -12,9 +12,19 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
 {
     weak var picturesDataProviderDelegate: PicturesDataProviderDelegate?
     
-    private(set) var selectedPictures: [URL] = []
+    private(set) var selectedPictures: [URL] = [] {
+        didSet { didSetSelectedPictures(oldValue) } }
     
     weak var picturesCollectionViewDataSource: PicturesCollectionViewDataSource<T>?
+    
+    // MARK: - Setter
+    
+    private func didSetSelectedPictures(_ oldValue: [URL])
+    {
+        picturesDataProviderDelegate?.picturesDidSelectPictures?(selectedPictures: selectedPictures)
+    }
+    
+    // MARK: -
     
     @objc(collectionView:didSelectItemAtIndexPath:)
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
