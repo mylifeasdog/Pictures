@@ -62,6 +62,18 @@ open class Pictures<T: UICollectionViewCell>: UICollectionViewController where T
         reloadData()
     }
     
+    // MARK: -
+    
+    open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator)
+    {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(
+            alongsideTransition: { [weak self] _ in
+                self?.picturesCollectionViewDelegate.size = CGSize(width: UIScreen.main.bounds.width / 3.0, height: UIScreen.main.bounds.width / 3.0) },
+            completion: nil)
+    }
+    
     // MARK: - Action
     
     @objc
