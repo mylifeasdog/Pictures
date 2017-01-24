@@ -19,25 +19,27 @@ class ViewController: UIViewController
         let pictures = Pictures<PicturesCollectionViewCell>()
         pictures.picturesDataProviderDelegate = self
         pictures.collectionView?.reloadData()
-        present(pictures, animated: true, completion: nil)
+        
+        let navi = UINavigationController(rootViewController: pictures)
+        present(navi, animated: true, completion: nil)
     }
     
 }
 
 extension ViewController: PicturesDataProviderDelegate
 {
-    func picturesNeedsNewPictures(_ callback: @escaping (((newPictures: [URL], isLoadAll: Bool)) -> Void))
+    func picturesNeedsNewPictures(_ callback: @escaping (((newPictures: [Any], isLoadAll: Bool)) -> Void))
     {
         DispatchQueue
             .main
             .asyncAfter(
             deadline: .now() + .seconds(2)) {
                 self.page += 1
-                callback((newPictures: (1...30).map { self.imageURL(from: $0 * self.page) }, isLoadAll: self.page > 3))
+                callback((newPictures: self.allImage(), isLoadAll: self.page > 3))
         }
     }
     
-    func picturesDidSelectPictures(selectedPictures: [URL])
+    func picturesDidSelectPictures(selectedPictures: [Any])
     {
         print("selectedPictures: \(selectedPictures)")
     }
@@ -45,6 +47,17 @@ extension ViewController: PicturesDataProviderDelegate
 
 extension ViewController
 {
+    func allImage() -> [UIImage]
+    {
+        var images = [UIImage]()
+        for i in 0...10
+        {
+            images.append(UIImage(named: "sample-\(i)")!)
+        }
+        
+        return images
+    }
+    
     fileprivate func imageURL(from index: UInt) -> URL
     {
         return URL(string: "https://unsplash.it/250/250?image=\(index)")! // swiftlint:disable:this force_unwrapping

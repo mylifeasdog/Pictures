@@ -11,4 +11,5 @@ import UIKit
 public protocol PicturesImageProviderType: class
 {
     var imageURL: URL? { get set }
+    var image: UIImage? { get set }
 }

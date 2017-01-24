@@ -10,13 +10,14 @@ import UIKit
 
 open class PicturesCollectionViewCell: UICollectionViewCell, PicturesImageProviderType, SelectedIndexCellType
 {
+    open var image: UIImage? = nil { didSet { didSetImage(oldValue) } }
     open var imageURL: URL? = nil { didSet { didSetImageURL(oldValue) } }
     open var index: UInt = 1 { didSet { selectedIndexLabel.text = "\(index)" } }
     
     private let imageView = UIImageView(frame: .zero)
     private let selectedIndexLabel = UILabel(frame: .zero)
     
-    override open var isSelected: Bool { didSet { didSetIsSelected(oldValue) } }
+    override open var isSelected: Bool { didSet { imageURL != nil ? didSetIsSelected(oldValue) : didSetIsSelectedImage(oldValue) } }
     
     // MARK: - Initializer
     
@@ -107,6 +108,13 @@ open class PicturesCollectionViewCell: UICollectionViewCell, PicturesImageProvid
         selectedIndexLabel.isHidden = (isSelected == false)
     }
     
+    private func didSetIsSelectedImage(_ oldValue: Bool)
+    {
+        imageView.layer.borderWidth = isSelected ? 3.0 : 0.0
+        imageView.layer.borderColor = isSelected ? UIColor.blue.cgColor : nil
+        selectedIndexLabel.isHidden = (isSelected == false)
+    }
+    
     private func didSetImageURL(_ oldValue: URL?)
     {
         guard let imageURL = imageURL else
@@ -121,6 +129,25 @@ open class PicturesCollectionViewCell: UICollectionViewCell, PicturesImageProvid
             .async {
                 
                 let image = (try? Data(contentsOf: imageURL)).flatMap { UIImage(data: $0) }
+                
+                DispatchQueue
+                    .main
+                    .async { [weak self] in
+                        self?.imageView.image = image } }
+    }
+    
+    private func didSetImage(_ oldValue: UIImage?)
+    {
+        guard let image = image else
+        {
+            imageView.image = nil
+            
+            return
+        }
+        
+        DispatchQueue
+            .global(qos: .background)
+            .async {
                 
                 DispatchQueue
                     .main
