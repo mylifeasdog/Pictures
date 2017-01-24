@@ -14,7 +14,7 @@ class PicturesCollectionViewDataSource<T: UICollectionViewCell>: NSObject, UICol
     
     weak var picturesCollectionViewDelegate: PicturesCollectionViewDelegate<T>?
     
-    var pictures: [URL] = []
+    var pictures: [Any] = []
     
     var isLoading = false
     var isLoadAll = false { didSet { didSetIsLoadAll(oldValue) } }
@@ -58,20 +58,41 @@ class PicturesCollectionViewDataSource<T: UICollectionViewCell>: NSObject, UICol
             fatalError()
         }
         
-        let picture = pictures[indexPath.item]
-        
-        cell.isSelected = picturesCollectionViewDelegate.map { $0.selectedPictures.contains(picture) } ?? false
-        cell.imageURL = picture
-        
-        if cell.isSelected
+        if let pictures = self.pictures as? [URL]
         {
-            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition())
+            let picture = pictures[indexPath.item]
             
-            (cell as? SelectedIndexCellType)?.index = picturesCollectionViewDelegate?.selectedPictures.index(of: picture).map { UInt($0) + 1 } ?? 1
+            cell.isSelected = picturesCollectionViewDelegate.map { $0.selectedPictures.contains(picture) } ?? false
+            cell.imageURL = picture
+            
+            if cell.isSelected
+            {
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition())
+                
+                (cell as? SelectedIndexCellType)?.index = picturesCollectionViewDelegate?.selectedPictures.index(of: picture).map { UInt($0) + 1 } ?? 1
+            }
+            else
+            {
+                collectionView.deselectItem(at: indexPath, animated: false)
+            }
         }
-        else
+        else if let pictures = self.pictures as? [UIImage]
         {
-            collectionView.deselectItem(at: indexPath, animated: false)
+            let picture = pictures[indexPath.item]
+            
+            cell.isSelected = picturesCollectionViewDelegate.map { $0.selectedImagePictures.contains(picture) } ?? false
+            cell.image = picture
+            
+            if cell.isSelected
+            {
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition())
+                
+                (cell as? SelectedIndexCellType)?.index = picturesCollectionViewDelegate?.selectedImagePictures.index(of: picture).map { UInt($0) + 1 } ?? 1
+            }
+            else
+            {
+                collectionView.deselectItem(at: indexPath, animated: false)
+            }
         }
         
         return cell

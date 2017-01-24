@@ -11,7 +11,8 @@ import Foundation
 @objc
 public protocol PicturesDataProviderDelegate: class
 {
-    func picturesNeedsNewPictures( _ callback: @escaping (((newPictures: [URL], isLoadAll: Bool)) -> Void))
+    func picturesNeedsNewPictures( _ callback: @escaping (((newPictures: [Any], isLoadAll: Bool)) -> Void))
     @objc
-    optional func picturesDidSelectPictures(selectedPictures: [URL])
+    optional func picturesDidSelectPictures(selectedPictures: [Any])
+    
 }

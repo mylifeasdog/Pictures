@@ -10,7 +10,6 @@
 		47D8A5511E161C340099F058 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8A5501E161C340099F058 /* AppDelegate.swift */; };
 		47D8A5531E161C340099F058 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8A5521E161C340099F058 /* ViewController.swift */; };
 		47D8A5561E161C340099F058 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47D8A5541E161C340099F058 /* Main.storyboard */; };
-		47D8A5581E161C340099F058 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47D8A5571E161C340099F058 /* Assets.xcassets */; };
 		47D8A55B1E161C340099F058 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47D8A5591E161C340099F058 /* LaunchScreen.storyboard */; };
 		47D8A5661E161C340099F058 /* PicturesDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8A5651E161C340099F058 /* PicturesDemoTests.swift */; };
 		47D8A5711E161C340099F058 /* PicturesDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8A5701E161C340099F058 /* PicturesDemoUITests.swift */; };
@@ -88,7 +87,6 @@
 		47D8A5501E161C340099F058 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47D8A5521E161C340099F058 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		47D8A5551E161C340099F058 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		47D8A5571E161C340099F058 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47D8A55A1E161C340099F058 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		47D8A55C1E161C340099F058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47D8A5611E161C340099F058 /* PicturesDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicturesDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,7 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				47D8A5501E161C340099F058 /* AppDelegate.swift */,
-				47D8A5571E161C340099F058 /* Assets.xcassets */,
 				47D8A55C1E161C340099F058 /* Info.plist */,
 				47D8A5591E161C340099F058 /* LaunchScreen.storyboard */,
 				47D8A5541E161C340099F058 /* Main.storyboard */,
@@ -497,7 +494,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				47D8A55B1E161C340099F058 /* LaunchScreen.storyboard in Resources */,
-				47D8A5581E161C340099F058 /* Assets.xcassets in Resources */,
 				47D8A5561E161C340099F058 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
