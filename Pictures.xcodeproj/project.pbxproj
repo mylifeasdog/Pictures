@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		476836701E3735DA00207D0C /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4768366F1E3735DA00207D0C /* Asset.xcassets */; };
 		47D8A5511E161C340099F058 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8A5501E161C340099F058 /* AppDelegate.swift */; };
 		47D8A5531E161C340099F058 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D8A5521E161C340099F058 /* ViewController.swift */; };
 		47D8A5561E161C340099F058 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47D8A5541E161C340099F058 /* Main.storyboard */; };
@@ -83,6 +84,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4768366F1E3735DA00207D0C /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
 		47D8A54D1E161C340099F058 /* PicturesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicturesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47D8A5501E161C340099F058 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47D8A5521E161C340099F058 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				47D8A5501E161C340099F058 /* AppDelegate.swift */,
+				4768366F1E3735DA00207D0C /* Asset.xcassets */,
 				47D8A55C1E161C340099F058 /* Info.plist */,
 				47D8A5591E161C340099F058 /* LaunchScreen.storyboard */,
 				47D8A5541E161C340099F058 /* Main.storyboard */,
@@ -493,6 +496,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				476836701E3735DA00207D0C /* Asset.xcassets in Resources */,
 				47D8A55B1E161C340099F058 /* LaunchScreen.storyboard in Resources */,
 				47D8A5561E161C340099F058 /* Main.storyboard in Resources */,
 			);
