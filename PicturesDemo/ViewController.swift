@@ -35,7 +35,7 @@ extension ViewController: PicturesDataProviderDelegate
             .asyncAfter(
             deadline: .now() + .seconds(2)) {
                 self.page += 1
-                callback((newPictures: self.allImage(), isLoadAll: self.page > 3))
+                callback((newPictures: (0...30).map { self.imageURL(from: $0 * self.page) }, isLoadAll: self.page > 3))
         }
     }
     
@@ -47,16 +47,6 @@ extension ViewController: PicturesDataProviderDelegate
 
 extension ViewController
 {
-    func allImage() -> [UIImage]
-    {
-        var images = [UIImage]()
-        for i in 0...10
-        {
-            images.append(UIImage(named: "sample-\(i)")!)
-        }
-        
-        return images
-    }
     
     fileprivate func imageURL(from index: UInt) -> URL
     {
