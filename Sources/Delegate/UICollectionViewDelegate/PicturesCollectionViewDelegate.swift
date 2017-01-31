@@ -51,20 +51,30 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
                 return
             }
             
-            selectedPictures.append(selectedPicture)
-            
             guard let cell = collectionView.cellForItem(at: indexPath) else
             {
                 return
             }
             
-            cell.isSelected = true
-            collectionView.selectItem(
-                at: indexPath,
-                animated: true,
-                scrollPosition: UICollectionViewScrollPosition())
+            if self.selectedPictures.count < self.picturesDataProviderDelegate?.picturesSetLimitSelect?() ?? 9_999
+            {
+                selectedPictures.append(selectedPicture)
+                cell.isSelected = true
+                collectionView.selectItem(
+                    at: indexPath,
+                    animated: true,
+                    scrollPosition: UICollectionViewScrollPosition())
+                
+                (cell as? SelectedIndexCellType)?.index = selectedPictures.index(of: selectedPicture).map { UInt($0) + 1 } ?? 1
+            }
+            else
+            {
+                cell.isSelected = false
+                collectionView.deselectItem(
+                    at: indexPath,
+                    animated: true)
+            }
             
-            (cell as? SelectedIndexCellType)?.index = selectedPictures.index(of: selectedPicture).map { UInt($0) + 1 } ?? 1
         }
         else if let picture = pictures as? [UIImage]
         {
@@ -75,23 +85,32 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
                 return
             }
             
-            selectedImagePictures.append(selectedPicture)
-            
             guard let cell = collectionView.cellForItem(at: indexPath) else
             {
                 return
             }
             
-            cell.isSelected = true
-            collectionView.selectItem(
-                at: indexPath,
-                animated: true,
-                scrollPosition: UICollectionViewScrollPosition())
-            
-            (cell as? SelectedIndexCellType)?.index = selectedImagePictures.index(of: selectedPicture).map { UInt($0) + 1 } ?? 1
+            if self.selectedPictures.count < self.picturesDataProviderDelegate?.picturesSetLimitSelect?() ?? 9_999
+            {
+                selectedImagePictures.append(selectedPicture)
+                cell.isSelected = true
+                collectionView.selectItem(
+                    at: indexPath,
+                    animated: true,
+                    scrollPosition: UICollectionViewScrollPosition())
+                
+                (cell as? SelectedIndexCellType)?.index = selectedImagePictures.index(of: selectedPicture).map { UInt($0) + 1 } ?? 1
+            }
+            else
+            {
+                cell.isSelected = false
+                collectionView.deselectItem(
+                    at: indexPath,
+                    animated: true)
+            }
         }
     }
-    
+
     @objc(collectionView:didDeselectItemAtIndexPath:)
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath)
     {
@@ -99,7 +118,7 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
         {
             return
         }
-        
+
         guard 0..<pictures.count ~= indexPath.item else
         {
             return

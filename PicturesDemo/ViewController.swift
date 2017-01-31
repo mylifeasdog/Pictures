@@ -18,6 +18,7 @@ class ViewController: UIViewController
     {
         let pictures = Pictures<PicturesCollectionViewCell>()
         pictures.picturesDataProviderDelegate = self
+        
         pictures.collectionView?.reloadData()
         
         let navi = UINavigationController(rootViewController: pictures)
@@ -37,6 +38,11 @@ extension ViewController: PicturesDataProviderDelegate
                 self.page += 1
                 callback((newPictures: (0...30).map { self.imageURL(from: $0 * self.page) }, isLoadAll: self.page > 3))
         }
+    }
+    
+    func picturesSetLimitSelect() -> Int
+    {
+        return 5
     }
     
     func picturesDidSelectPictures(selectedPictures: [Any])
