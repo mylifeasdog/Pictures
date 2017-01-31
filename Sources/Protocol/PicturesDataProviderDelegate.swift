@@ -15,4 +15,7 @@ public protocol PicturesDataProviderDelegate: class
     @objc
     optional func picturesDidSelectPictures(selectedPictures: [Any])
     
+    @objc
+    optional func picturesSetLimitSelect() -> Int
+    
 }

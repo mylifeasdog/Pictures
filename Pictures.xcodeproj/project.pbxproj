@@ -53,13 +53,6 @@
 			remoteGlobalIDString = 47D8A5A21E161D820099F058;
 			remoteInfo = Pictures;
 		};
-		47D8A5AF1E161D820099F058 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 47D8A5451E161C340099F058 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 47D8A54C1E161C340099F058;
-			remoteInfo = PicturesDemo;
-		};
 		47D8A5B61E161D820099F058 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 47D8A5451E161C340099F058 /* Project object */;
@@ -427,7 +420,6 @@
 			);
 			dependencies = (
 				47D8A5AE1E161D820099F058 /* PBXTargetDependency */,
-				47D8A5B01E161D820099F058 /* PBXTargetDependency */,
 			);
 			name = PicturesTests;
 			productName = PicturesTests;
@@ -465,7 +457,6 @@
 					47D8A5AA1E161D820099F058 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 47D8A54C1E161C340099F058;
 					};
 				};
 			};
@@ -616,11 +607,6 @@
 			isa = PBXTargetDependency;
 			target = 47D8A5A21E161D820099F058 /* Pictures */;
 			targetProxy = 47D8A5AD1E161D820099F058 /* PBXContainerItemProxy */;
-		};
-		47D8A5B01E161D820099F058 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 47D8A54C1E161C340099F058 /* PicturesDemo */;
-			targetProxy = 47D8A5AF1E161D820099F058 /* PBXContainerItemProxy */;
 		};
 		47D8A5B71E161D820099F058 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -886,7 +872,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.WipooShinsirikul.PicturesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PicturesDemo.app/PicturesDemo";
 			};
 			name = Debug;
 		};
@@ -900,7 +885,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.WipooShinsirikul.PicturesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PicturesDemo.app/PicturesDemo";
 			};
 			name = Release;
 		};
