@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "47D8A5AA1E161D820099F058"
+               BuildableName = "PicturesTests.xctest"
+               BlueprintName = "PicturesTests"
+               ReferencedContainer = "container:Pictures.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "47D8A5A21E161D820099F058"
+            BuildableName = "Pictures.framework"
+            BlueprintName = "Pictures"
+            ReferencedContainer = "container:Pictures.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
