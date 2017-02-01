@@ -90,7 +90,7 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
                 return
             }
             
-            if self.selectedPictures.count < self.picturesDataProviderDelegate?.picturesSetLimitSelect?() ?? 9_999
+            if self.selectedImagePictures.count < self.picturesDataProviderDelegate?.picturesSetLimitSelect?() ?? 9_999
             {
                 selectedImagePictures.append(selectedPicture)
                 cell.isSelected = true
