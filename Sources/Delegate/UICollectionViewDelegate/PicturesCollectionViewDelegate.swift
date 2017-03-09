@@ -10,6 +10,8 @@ import UIKit
 
 class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectionViewDelegateFlowLayout<T> where T: PicturesImageProviderType
 {
+    var selectionLimitation: UInt = 5
+    
     weak var picturesDataProviderDelegate: PicturesDataProviderDelegate?
     
     private(set) var selectedPictures: [URL] = [] {
@@ -24,7 +26,32 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
     
     private func didSetSelectedPictures(_ oldValue: [Any])
     {
-        picturesDataProviderDelegate?.picturesDidSelectPictures?(selectedPictures: selectedImagePictures.isEmpty == false ? selectedImagePictures : selectedPictures)
+        guard let pictures = picturesCollectionViewDataSource?.pictures else
+        {
+            return
+        }
+        
+        let result: [Any] = selectedImagePictures.isEmpty == false ? selectedImagePictures : selectedPictures
+        
+        let indexedPictures = pictures.enumerated().map { (offset, element) in (index: UInt(offset), picture: element) }
+        
+        let indexedResult: [(index: UInt, picture: Any)] = indexedPictures.filter { (index, picture) in
+            if let result = result as? [URL],
+                let picture = picture as? URL
+            {
+                return result.contains(picture)
+            }
+            else if let result = result as? [UIImage],
+                let picture = picture as? UIImage
+            {
+                return result.contains(picture)
+            }
+            else
+            {
+                return false
+            } }
+        
+        picturesDataProviderDelegate?.picturesDidSelectPictures(selectedPictures: indexedResult)
     }
     
     // MARK: -
@@ -56,7 +83,7 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
                 return
             }
             
-            if self.selectedPictures.count < self.picturesDataProviderDelegate?.picturesSetLimitSelect?() ?? 9_999
+            if self.selectedPictures.count < Int(selectionLimitation)
             {
                 selectedPictures.append(selectedPicture)
                 cell.isSelected = true
@@ -90,7 +117,7 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
                 return
             }
             
-            if self.selectedImagePictures.count < self.picturesDataProviderDelegate?.picturesSetLimitSelect?() ?? 9_999
+            if self.selectedImagePictures.count < Int(selectionLimitation)
             {
                 selectedImagePictures.append(selectedPicture)
                 cell.isSelected = true
