@@ -18,6 +18,7 @@ class ViewController: UIViewController
     {
         let pictures = Pictures<PicturesCollectionViewCell>()
         pictures.picturesDataProviderDelegate = self
+        pictures.selectionLimitation = 5
         
         pictures.collectionView?.reloadData()
         
@@ -40,12 +41,7 @@ extension ViewController: PicturesDataProviderDelegate
         }
     }
     
-    func picturesSetLimitSelect() -> Int
-    {
-        return 5
-    }
-    
-    func picturesDidSelectPictures(selectedPictures: [Any])
+    func picturesDidSelectPictures(selectedPictures: [(index: UInt, picture: Any)])
     {
         print("selectedPictures: \(selectedPictures)")
     }

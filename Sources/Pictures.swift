@@ -123,4 +123,8 @@ extension Pictures
     open var picturesDataProviderDelegate: PicturesDataProviderDelegate? {
         get { return picturesCollectionViewDelegate.picturesDataProviderDelegate }
         set { picturesCollectionViewDelegate.picturesDataProviderDelegate = newValue } }
+    
+    open var selectionLimitation: UInt {
+        get { return picturesCollectionViewDelegate.selectionLimitation }
+        set { picturesCollectionViewDelegate.selectionLimitation = newValue } }
 }

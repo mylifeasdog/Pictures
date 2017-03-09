@@ -8,14 +8,9 @@
 
 import Foundation
 
-@objc
 public protocol PicturesDataProviderDelegate: class
 {
     func picturesNeedsNewPictures( _ callback: @escaping (((newPictures: [Any], isLoadAll: Bool)) -> Void))
-    @objc
-    optional func picturesDidSelectPictures(selectedPictures: [Any])
     
-    @objc
-    optional func picturesSetLimitSelect() -> Int
-    
+    func picturesDidSelectPictures(selectedPictures: [(index: UInt, picture: Any)])
 }
