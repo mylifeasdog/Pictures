@@ -14,9 +14,11 @@ opt_in_rules:
   - force_unwrapping
   - nimble_operator
   - number_separator
+  - object_literal
   - operator_usage_whitespace
   - overridden_super_call
   - private_outlet
+  - redundant_nil_coalescing
   - redundant_string_enum_value
 excluded:
   - Carthage
@@ -51,9 +53,12 @@ legacy_constant: error
 legacy_constructor: error
 mark: error
 nimble_operator: error
-number_separator: error
+number_separator: 
+  severity: error
+object_literal: error
 operator_whitespace: error
 operator_usage_whitespace: error
+redundant_nil_coalescing: error
 redundant_string_enum_value: error
 return_arrow_whitespace: error
 statement_position:
@@ -78,7 +83,8 @@ variable_name:
   excluded:
     - id
     - url
-vertical_whitespace: error
+vertical_whitespace: 
+  severity: error
 void_return: error
 custom_rules:
   else_if_spacing:
