@@ -17,41 +17,38 @@ class ViewController: UIViewController
     @IBAction func buttonDidSelect()
     {
         let pictures = Pictures<PicturesCollectionViewCell>()
-        pictures.picturesDataProviderDelegate = self
-        pictures.selectionLimitation = 5
+        pictures.selectionLimit = 5
+        pictures.needsNewPicturesHandler = { [unowned self] callback in
+            self.loadMoreImageURL(page: self.page + 1) { (urls, isLoadAll) in
+                self.page += 1
+                callback((newPictures: urls, isLoadAll: isLoadAll)) } }
+        
+        pictures.didSelectPicturesHandler = { selectedPictures in
+            print("selectedPictures: \(selectedPictures)") }
         
         pictures.collectionView?.reloadData()
         
-        let navi = UINavigationController(rootViewController: pictures)
-        present(navi, animated: true, completion: nil)
-    }
-    
-}
-
-extension ViewController: PicturesDataProviderDelegate
-{
-    func picturesNeedsNewPictures(_ callback: @escaping (((newPictures: [Any], isLoadAll: Bool)) -> Void))
-    {
-        DispatchQueue
-            .main
-            .asyncAfter(
-            deadline: .now() + .seconds(2)) {
-                self.page += 1
-                callback((newPictures: (0...30).map { self.imageURL(from: $0 * self.page) }, isLoadAll: self.page > 3))
-        }
-    }
-    
-    func picturesDidSelectPictures(selectedPictures: [(index: UInt, picture: Any)])
-    {
-        print("selectedPictures: \(selectedPictures)")
+        let navigationController = UINavigationController(rootViewController: pictures)
+        present(navigationController, animated: true, completion: nil)
     }
 }
 
 extension ViewController
 {
-    
     fileprivate func imageURL(from index: UInt) -> URL
     {
         return URL(string: "https://unsplash.it/250/250?image=\(index)")! // swiftlint:disable:this force_unwrapping
+    }
+    
+    fileprivate func loadMoreImageURL(page: UInt, callback: @escaping ((urls: [URL], isLoadAll: Bool)) -> Void)
+    {
+        DispatchQueue
+            .main
+            .asyncAfter(deadline: .now() + .seconds(2)) {
+                
+                let urls = (0...30).map { [unowned self] in self.imageURL(from: $0 * page) }
+                let isLoadAll = page > 3
+                
+                callback((urls: urls, isLoadAll: isLoadAll)) }
     }
 }
