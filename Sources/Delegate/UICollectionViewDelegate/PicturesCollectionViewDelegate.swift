@@ -10,9 +10,7 @@ import UIKit
 
 class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectionViewDelegateFlowLayout<T> where T: PicturesImageProviderType
 {
-    var selectionLimitation: UInt = 5
-    
-    weak var picturesDataProviderDelegate: PicturesDataProviderDelegate?
+    var selectionLimit: UInt = 5
     
     private(set) var selectedPictures: [URL] = [] {
         didSet { didSetSelectedPictures(oldValue) } }
@@ -21,6 +19,9 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
         didSet { didSetSelectedPictures(oldValue) } }
     
     weak var picturesCollectionViewDataSource: PicturesCollectionViewDataSource<T>?
+    
+    var needsNewPicturesHandler: ((_ callback: @escaping ((newPictures: [Any], isLoadAll: Bool)) -> Void) -> Void)?
+    var didSelectPicturesHandler: (([(index: UInt, picture: Any)]) -> Void)?
     
     // MARK: - Setter
     
@@ -51,7 +52,7 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
                 return false
             } }
         
-        picturesDataProviderDelegate?.picturesDidSelectPictures(selectedPictures: indexedResult)
+        didSelectPicturesHandler?(indexedResult)
     }
     
     // MARK: -
@@ -83,7 +84,7 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
                 return
             }
             
-            if self.selectedPictures.count < Int(selectionLimitation)
+            if self.selectedPictures.count < Int(selectionLimit)
             {
                 selectedPictures.append(selectedPicture)
                 cell.isSelected = true
@@ -117,7 +118,7 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
                 return
             }
             
-            if self.selectedImagePictures.count < Int(selectionLimitation)
+            if self.selectedImagePictures.count < Int(selectionLimit)
             {
                 selectedImagePictures.append(selectedPicture)
                 cell.isSelected = true
@@ -247,14 +248,14 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
             return
         }
         
-        guard let picturesDataProviderDelegate = picturesDataProviderDelegate else
+        guard let needsNewPicturesHandler = needsNewPicturesHandler else
         {
             return
         }
         
         picturesCollectionViewDataSource.isLoading = true
         
-        picturesDataProviderDelegate.picturesNeedsNewPictures { (newPictures, isLoadAll) in
+        needsNewPicturesHandler() { (newPictures, isLoadAll) in
             collectionView
                 .performBatchUpdates(
                     { [weak self] in

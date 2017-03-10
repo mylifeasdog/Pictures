@@ -87,7 +87,7 @@ extension Pictures
 {
     func reloadData(_ completion: (() -> Void)? = nil)
     {
-        guard let picturesDataProviderDelegate = picturesDataProviderDelegate else
+        guard let needsNewPicturesHandler = needsNewPicturesHandler else
         {
             return
         }
@@ -95,7 +95,7 @@ extension Pictures
         picturesCollectionViewDataSource.isLoading = true
         picturesCollectionViewDataSource.isLoadAll = false
         
-        picturesDataProviderDelegate.picturesNeedsNewPictures { [weak self] (newPictures, isLoadAll) in
+        needsNewPicturesHandler { [weak self] (newPictures, isLoadAll) in
             self?.picturesCollectionViewDataSource.pictures.removeAll()
             self?.picturesCollectionViewDataSource.pictures += newPictures
             self?.picturesCollectionViewDataSource.isLoadAll = isLoadAll
@@ -119,12 +119,13 @@ extension Pictures
     open var minimumInteritemSpacing: CGFloat {
         get { return picturesCollectionViewDelegate.minimumInteritemSpacing }
         set { picturesCollectionViewDelegate.minimumInteritemSpacing = newValue } }
-    
-    open var picturesDataProviderDelegate: PicturesDataProviderDelegate? {
-        get { return picturesCollectionViewDelegate.picturesDataProviderDelegate }
-        set { picturesCollectionViewDelegate.picturesDataProviderDelegate = newValue } }
-    
-    open var selectionLimitation: UInt {
-        get { return picturesCollectionViewDelegate.selectionLimitation }
-        set { picturesCollectionViewDelegate.selectionLimitation = newValue } }
+    open var needsNewPicturesHandler: ((_ callback: @escaping ((newPictures: [Any], isLoadAll: Bool)) -> Void) -> Void)? {
+        get { return picturesCollectionViewDelegate.needsNewPicturesHandler }
+        set { picturesCollectionViewDelegate.needsNewPicturesHandler = newValue } }
+    open var didSelectPicturesHandler: (([(index: UInt, picture: Any)]) -> Void)? {
+        get { return picturesCollectionViewDelegate.didSelectPicturesHandler }
+        set { picturesCollectionViewDelegate.didSelectPicturesHandler = newValue } }
+    open var selectionLimit: UInt {
+        get { return picturesCollectionViewDelegate.selectionLimit }
+        set { picturesCollectionViewDelegate.selectionLimit = newValue } }
 }
