@@ -27,30 +27,9 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
     
     private func didSetSelectedPictures(_ oldValue: [Any])
     {
-        guard let pictures = picturesCollectionViewDataSource?.pictures else
-        {
-            return
-        }
-        
         let result: [Any] = selectedImagePictures.isEmpty == false ? selectedImagePictures : selectedPictures
         
-        let indexedPictures = pictures.enumerated().map { (offset, element) in (index: UInt(offset), picture: element) }
-        
-        let indexedResult: [(index: UInt, picture: Any)] = indexedPictures.filter { (index, picture) in
-            if let result = result as? [URL],
-                let picture = picture as? URL
-            {
-                return result.contains(picture)
-            }
-            else if let result = result as? [UIImage],
-                let picture = picture as? UIImage
-            {
-                return result.contains(picture)
-            }
-            else
-            {
-                return false
-            } }
+        let indexedResult = result.enumerated().map { (offset, element) in (index: UInt(offset), picture: element) }
         
         didSelectPicturesHandler?(indexedResult)
     }
@@ -255,7 +234,7 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
         
         picturesCollectionViewDataSource.isLoading = true
         
-        needsNewPicturesHandler() { (newPictures, isLoadAll) in
+        needsNewPicturesHandler { (newPictures, isLoadAll) in
             collectionView
                 .performBatchUpdates(
                     { [weak self] in

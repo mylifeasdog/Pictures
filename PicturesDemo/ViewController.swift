@@ -6,9 +6,8 @@
 //  Copyright © 2016 WipooShinsirikul. All rights reserved.
 //
 
-import UIKit
-
 import Pictures
+import UIKit
 
 class ViewController: UIViewController
 {
