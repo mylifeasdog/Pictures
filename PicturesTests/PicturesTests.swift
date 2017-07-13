@@ -6,8 +6,8 @@
 //  Copyright © 2016 WipooShinsirikul. All rights reserved.
 //
 
-import XCTest
 @testable import Pictures
+import XCTest
 
 class PicturesTests: XCTestCase
 {
