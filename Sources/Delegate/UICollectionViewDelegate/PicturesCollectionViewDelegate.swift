@@ -27,9 +27,31 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
     
     private func didSetSelectedPictures(_ oldValue: [Any])
     {
+        guard let pictures = picturesCollectionViewDataSource?.pictures else
+        {
+            return
+        }
+        
         let result: [Any] = selectedImagePictures.isEmpty == false ? selectedImagePictures : selectedPictures
         
-        let indexedResult = result.enumerated().map { (offset, element) in (index: UInt(offset), picture: element) }
+        let indexedResult: [(index: UInt, picture: Any)] = result
+            .flatMap { element in
+                if let pictures = pictures as? [URL],
+                    let picture = element as? URL,
+                    let index = pictures.index(of: picture)
+                {
+                    return (index: UInt(index), picture: picture)
+                }
+                else if let pictures = pictures as? [UIImage],
+                    let picture = element as? UIImage,
+                    let index = pictures.index(of: picture)
+                {
+                    return (index: UInt(index), picture: picture)
+                }
+                else
+                {
+                    return nil
+                } }
         
         didSelectPicturesHandler?(indexedResult)
     }
