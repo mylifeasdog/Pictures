@@ -27,36 +27,9 @@ opt_in_rules:
   - sorted_imports
   - switch_case_on_newline
 excluded:
-  - Playground
   - Carthage
   - Pods
   - DataManagerTests/Mock/GeneratedMocks.swift
-  - DataManagerTests/Mock/MockRealmServiceType.swift
-  - DataManagerTests/Mock/RealmServiceTypeStub.swift
-  - InteractorTests/Mock/GeneratedMocks.swift
-  - ShopSpotTests/Mock/GeneratedAlertInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedBankInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedBrandInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedCampaignCodeInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedCartInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedCategoryInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedEditorsPicksInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedFeatureInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedGroupTransactionInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedLogisticProviderInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedMessageInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedPhotoInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedPointInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedRSSFeedInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedSearchInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedShopInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedSocialInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedStuffInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedTagInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedTransactionInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedUserInteractorMocks.swift
-  - ShopSpotTests/Mock/GeneratedRouterMocks.swift
-  - ShopSpotUITests/Mock/GeneratedPresenterMocks.swift
 attributes:
   severity: error
 closing_brace: error
