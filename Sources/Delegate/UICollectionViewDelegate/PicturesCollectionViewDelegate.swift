@@ -36,7 +36,7 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
         
         var indexedResult = [(index: UInt, picture: Any)]()
         
-        result.enumerated().forEach { (_, element) in
+        result.forEach { element in
             if let pictures = pictures as? [URL],
                 let picture = element as? URL
             {
