@@ -17,7 +17,13 @@ class ViewController: UIViewController
     {
         let pictures = Pictures<PicturesCollectionViewCell>()
         pictures.selectionLimit = 5
-        pictures.needsNewPicturesHandler = { [unowned self] callback in
+        pictures.needsNewPicturesHandler = { [unowned self] (isFromRefreshControl, callback) in
+            
+            if isFromRefreshControl
+            {
+                self.page = 0
+            }
+            
             self.loadMoreImageURL(page: self.page + 1) { (urls, isLoadAll) in
                 self.page += 1
                 callback((newPictures: urls, isLoadAll: isLoadAll)) } }

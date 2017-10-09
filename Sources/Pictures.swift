@@ -95,7 +95,7 @@ extension Pictures
         picturesCollectionViewDataSource.isLoading = true
         picturesCollectionViewDataSource.isLoadAll = false
         
-        needsNewPicturesHandler { [weak self] (newPictures, isLoadAll) in
+        needsNewPicturesHandler(true) { [weak self] (newPictures, isLoadAll) in
             self?.picturesCollectionViewDataSource.pictures.removeAll()
             self?.picturesCollectionViewDataSource.pictures += newPictures
             self?.picturesCollectionViewDataSource.isLoadAll = isLoadAll
@@ -119,7 +119,7 @@ extension Pictures
     open var minimumInteritemSpacing: CGFloat {
         get { return picturesCollectionViewDelegate.minimumInteritemSpacing }
         set { picturesCollectionViewDelegate.minimumInteritemSpacing = newValue } }
-    open var needsNewPicturesHandler: ((_ callback: @escaping ((newPictures: [Any], isLoadAll: Bool)) -> Void) -> Void)? {
+    open var needsNewPicturesHandler: ((_ isFromRefreshControl: Bool, _ callback: @escaping ((newPictures: [Any], isLoadAll: Bool)) -> Void) -> Void)? {
         get { return picturesCollectionViewDelegate.needsNewPicturesHandler }
         set { picturesCollectionViewDelegate.needsNewPicturesHandler = newValue } }
     open var didSelectPicturesHandler: (([(index: UInt, picture: Any)]) -> Void)? {
