@@ -20,7 +20,7 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
     
     weak var picturesCollectionViewDataSource: PicturesCollectionViewDataSource<T>?
     
-    var needsNewPicturesHandler: ((_ callback: @escaping ((newPictures: [Any], isLoadAll: Bool)) -> Void) -> Void)?
+    var needsNewPicturesHandler: ((_ isFromRefreshControl: Bool, _ callback: @escaping ((newPictures: [Any], isLoadAll: Bool)) -> Void) -> Void)?
     var didSelectPicturesHandler: (([(index: UInt, picture: Any)]) -> Void)?
     
     // MARK: - Setter
@@ -256,7 +256,7 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
         
         picturesCollectionViewDataSource.isLoading = true
         
-        needsNewPicturesHandler { (newPictures, isLoadAll) in
+        needsNewPicturesHandler(pictures.isEmpty) { (newPictures, isLoadAll) in
             collectionView
                 .performBatchUpdates(
                     { [weak self] in
