@@ -267,4 +267,12 @@ class PicturesCollectionViewDelegate<T: UICollectionViewCell>: PicturesCollectio
                     completion: { _ in
                         picturesCollectionViewDataSource.isLoading = false }) }
     }
+    
+    // MARK: -
+    
+    func clearSelectedImages()
+    {
+        selectedPictures.removeAll()
+        selectedImagePictures.removeAll()
+    }
 }
