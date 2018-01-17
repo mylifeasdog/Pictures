@@ -94,6 +94,7 @@ extension Pictures
         
         picturesCollectionViewDataSource.isLoading = true
         picturesCollectionViewDataSource.isLoadAll = false
+        picturesCollectionViewDelegate.clearSelectedImages()
         
         needsNewPicturesHandler(true) { [weak self] (newPictures, isLoadAll) in
             self?.picturesCollectionViewDataSource.pictures.removeAll()
